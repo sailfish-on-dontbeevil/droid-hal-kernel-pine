@@ -13,7 +13,9 @@ Source1:    sun50i-a64-pinephone.dtb
 Source2:    sun50i-a64-pinephone.dts
 Source3:    sun50i-a64-pinetab.dtb
 Source4:    sun50i-a64-pinetab.dts
-Source5:    Image
+Source5:    sun50i-a64-dontbeevil.dtb
+Source6:    sun50i-a64-dontbeevil.dts
+Source7:    Image
 
 %description
 This package contains the mainline kernel package for
@@ -39,6 +41,8 @@ cp %{SOURCE2} $RPM_BUILD_ROOT/boot/
 cp %{SOURCE3} $RPM_BUILD_ROOT/boot/
 cp %{SOURCE4} $RPM_BUILD_ROOT/boot/
 cp %{SOURCE5} $RPM_BUILD_ROOT/boot/
+cp %{SOURCE6} $RPM_BUILD_ROOT/boot/
+cp %{SOURCE7} $RPM_BUILD_ROOT/boot/
 
 cp -R lib $RPM_BUILD_ROOT/
 
