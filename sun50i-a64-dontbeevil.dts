@@ -277,6 +277,7 @@
 
 		touchscreen-size-x = <720>;
 		touchscreen-size-y = <1440>;
+		touchscreen-inverted-x;
 	};
 };
 
