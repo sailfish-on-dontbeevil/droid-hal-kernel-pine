@@ -35,8 +35,8 @@
 
 	i2c-csi {
 		compatible = "i2c-gpio";
-		sda-gpios = <&pio 4 13 GPIO_ACTIVE_HIGH>; /* PE13 */
-		scl-gpios = <&pio 4 12 GPIO_ACTIVE_HIGH>; /* PE12 */
+		sda-gpios = <&pio 4 13 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN|GPIO_PULL_UP)>; /* PE13 */
+		scl-gpios = <&pio 4 12 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN|GPIO_PULL_UP)>; /* PE12 */
 		i2c-gpio,delay-us = <5>;
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -88,12 +88,6 @@
 		};
 	};
 
-	speaker_amp: audio-amplifier {
-		compatible = "simple-audio-amplifier";
-		enable-gpios = <&pio 2 7 GPIO_ACTIVE_HIGH>; /* PC7 */
-		sound-name-prefix = "Speaker Amp";
-	};
-
 	reg_3v3_wifi: regulator-3v3-wifi{
 		compatible = "regulator-fixed";
 		regulator-name = "vcc-wifi";
@@ -117,6 +111,12 @@
 		regulator-max-microvolt = <5000000>;
 		gpio = <&pio 3 8 GPIO_ACTIVE_HIGH>; /* PD8 */
 		enable-active-high;
+	};
+
+	speaker_amp: audio-amplifier {
+		compatible = "simple-audio-amplifier";
+		enable-gpios = <&pio 2 7 GPIO_ACTIVE_HIGH>; /* PC7 */
+		sound-name-prefix = "Speaker Amp";
 	};
 
 	vibrator {
@@ -202,7 +202,7 @@
 	status = "okay";
 
 	touchscreen@5d {
-		compatible = "goodix,gt917s", "goodix,gt911";
+		compatible = "goodix,gt917s";
 		reg = <0x5d>;
 		interrupt-parent = <&pio>;
 		interrupts = <7 4 IRQ_TYPE_LEVEL_HIGH>; /* PH4 */
@@ -314,6 +314,7 @@
 };
 
 &pio {
+	vcc-pe-supply = <&reg_aldo1>;
 	vcc-pg-supply = <&reg_dldo4>;
 };
 
@@ -336,6 +337,10 @@
 
 &ac_power_supply {
 	status = "okay";
+};
+
+&axp_adc {
+	x-powers,ts-as-gpadc;
 };
 
 &battery_power_supply {
@@ -451,8 +456,8 @@
 
 &reg_ldo_io0 {
 	regulator-always-on;
-	regulator-min-microvolt = <2800000>;
-	regulator-max-microvolt = <2800000>;
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
 	regulator-name = "vcc-lcd";
 	status = "okay";
 };
@@ -474,7 +479,8 @@
 	simple-audio-card,widgets = "Microphone", "Internal Microphone Left",
 				    "Microphone", "Internal Microphone Right",
 				    "Headphone", "Headphone Jack",
-				    "Speaker", "Internal Speaker";
+				    "Speaker", "Internal Speaker",
+				    "Speaker", "Internal Earpiece";
 	simple-audio-card,routing =
 			"Left DAC", "AIF1 Slot 0 Left",
 			"Right DAC", "AIF1 Slot 0 Right",
@@ -482,6 +488,7 @@
 			"Speaker Amp INR", "LINEOUT",
 			"Internal Speaker", "Speaker Amp OUTL",
 			"Internal Speaker", "Speaker Amp OUTR",
+			"Internal Earpiece", "EARPIECE",
 			"Headphone Jack", "HP",
 			"AIF1 Slot 0 Left ADC", "Left ADC",
 			"AIF1 Slot 0 Right ADC", "Right ADC",

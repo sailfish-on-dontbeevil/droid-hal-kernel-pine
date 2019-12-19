@@ -277,13 +277,14 @@
 
 		touchscreen-size-x = <720>;
 		touchscreen-size-y = <1440>;
-		touchscreen-inverted-x;
 	};
 };
 
 &pio {
 	touch_intr_pin: touch_intr_pin {
 		pins = "PH4";
+		// TODO: perhaps remove this bias
+		bias-pull-up;
 		function = "irq";
 	};
 };

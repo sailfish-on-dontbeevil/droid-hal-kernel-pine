@@ -3,7 +3,7 @@
 
 Name:       droid-hal-kernel-pine
 Summary:    Linux kernel for PinePhone64
-Version:    5.3
+Version:    5.4
 Release:    0
 Group:      System/Kernel
 License:    GPLv2
