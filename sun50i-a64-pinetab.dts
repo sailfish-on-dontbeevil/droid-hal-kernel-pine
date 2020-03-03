@@ -7,6 +7,7 @@
 /dts-v1/;
 
 #include "sun50i-a64.dtsi"
+#include "sun50i-a64-cpu-opp.dtsi"
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
@@ -24,8 +25,8 @@
 	backlight: backlight {
 		compatible = "pwm-backlight";
 		pwms = <&pwm 0 50000 PWM_POLARITY_INVERTED>;
-		brightness-levels = <0 10 20 30 40 50 60 70 80 90 100>;
-		default-brightness-level = <8>;
+		brightness-levels = <0 16 18 20 22 24 26 29 32 35 38 42 46 51 56 62 68 75 83 91 100>;
+		default-brightness-level = <15>;
 		enable-gpios = <&pio 3 23 GPIO_ACTIVE_HIGH>; /* PD23 */
 		power-supply = <&vdd_bl>;
 	};
@@ -101,6 +102,22 @@
 	status = "okay";
 };
 
+&cpu0 {
+	cpu-supply = <&reg_dcdc2>;
+};
+
+&cpu1 {
+	cpu-supply = <&reg_dcdc2>;
+};
+
+&cpu2 {
+	cpu-supply = <&reg_dcdc2>;
+};
+
+&cpu3 {
+	cpu-supply = <&reg_dcdc2>;
+};
+
 &csi {
 	status = "okay";
 
@@ -121,10 +138,6 @@
 
 &dai {
 	status = "okay";
-};
-
-&cpu0 {
-	cpu-supply = <&reg_dcdc2>;
 };
 
 &de {
@@ -161,8 +174,6 @@
 };
 
 &i2c0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c0_pins>;
 	status = "okay";
 
 	touchscreen@5d {
@@ -176,9 +187,11 @@
 	};
 };
 
+&i2c0_pins {
+	bias-pull-up;
+};
+
 &i2c1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&i2c1_pins>;
 	status = "okay";
 
 	bma223@18 {
@@ -190,10 +203,6 @@
 			       "-1", "0", "0",
 			       "0", "0", "-1";
 	};
-};
-
-&i2c0_pins {
-	bias-pull-up;
 };
 
 &lradc {
@@ -426,15 +435,15 @@
 				    "Headphone", "Headphone Jack",
 				    "Speaker", "Internal Speaker";
 	simple-audio-card,routing =
-			"Left DAC", "AIF1 Slot 0 Left",
-			"Right DAC", "AIF1 Slot 0 Right",
-			"Speaker Amp INL", "LINEOUT",
-			"Speaker Amp INR", "LINEOUT",
+			"Headphone Jack", "HP",
 			"Internal Speaker", "Speaker Amp OUTL",
 			"Internal Speaker", "Speaker Amp OUTR",
-			"Headphone Jack", "HP",
-			"AIF1 Slot 0 Left ADC", "Left ADC",
-			"AIF1 Slot 0 Right ADC", "Right ADC",
+			"Speaker Amp INL", "LINEOUT",
+			"Speaker Amp INR", "LINEOUT",
+			"Left DAC", "DAC Left",
+			"Right DAC", "DAC Right",
+			"ADC Left", "Left ADC",
+			"ADC Right", "Right ADC",
 			"Internal Microphone Left", "MBIAS",
 			"MIC1", "Internal Microphone Left",
 			"Internal Microphone Right", "HBIAS",
@@ -445,20 +454,6 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0_pb_pins>;
 	status = "okay";
-};
-
-&uart1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-	status = "okay";
-
-	bluetooth {
-		compatible = "realtek,rtl8723cs-bt";
-		reset-gpios = <&r_pio 0 4 GPIO_ACTIVE_LOW>; /* PL4 */
-		device-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_LOW>; /* PL5 */
-		host-wake-gpios = <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
-		firmware-postfix = "pinebook";
-	};
 };
 
 &usb_otg {
