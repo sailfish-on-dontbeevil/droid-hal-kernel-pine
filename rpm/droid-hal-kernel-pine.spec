@@ -4,7 +4,7 @@
 Name:       droid-hal-kernel-pine
 Summary:    Linux kernel for PinePhone64
 Version:    5.5
-Release:    0
+Release:    1
 Group:      System/Kernel
 License:    GPLv2
 URL:        https://github.com/neochapay/kernel-dont_be_evil
