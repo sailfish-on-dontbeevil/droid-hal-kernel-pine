@@ -3,19 +3,21 @@
 
 Name:       droid-hal-kernel-pine
 Summary:    Linux kernel for PinePhone64
-Version:    5.5
-Release:    1
+Version:    5.6
+Release:    0
 Group:      System/Kernel
 License:    GPLv2
 URL:        https://github.com/neochapay/kernel-dont_be_evil
 Source0:    linux_modules.tar.bz2
-Source1:    sun50i-a64-pinephone.dtb
-Source2:    sun50i-a64-pinephone.dts
-Source3:    sun50i-a64-pinetab.dtb
-Source4:    sun50i-a64-pinetab.dts
-Source5:    sun50i-a64-dontbeevil.dtb
-Source6:    sun50i-a64-dontbeevil.dts
-Source7:    Image
+Source1:    sun50i-a64-pinephone-1.0.dtb
+Source2:    sun50i-a64-pinephone-1.0.dts
+Source3:    sun50i-a64-pinephone-1.1.dtb
+Source4:    sun50i-a64-pinephone-1.1.dts
+Source5:    sun50i-a64-pinetab.dtb
+Source6:    sun50i-a64-pinetab.dts
+Source7:    sun50i-a64-dontbeevil.dtb
+Source8:    sun50i-a64-dontbeevil.dts
+Source9:    Image
 
 %description
 This package contains the mainline kernel package for
@@ -43,6 +45,8 @@ cp %{SOURCE4} $RPM_BUILD_ROOT/boot/
 cp %{SOURCE5} $RPM_BUILD_ROOT/boot/
 cp %{SOURCE6} $RPM_BUILD_ROOT/boot/
 cp %{SOURCE7} $RPM_BUILD_ROOT/boot/
+cp %{SOURCE8} $RPM_BUILD_ROOT/boot/
+cp %{SOURCE9} $RPM_BUILD_ROOT/boot/
 
 cp -R lib $RPM_BUILD_ROOT/
 
