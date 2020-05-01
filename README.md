@@ -21,4 +21,5 @@ Execute these steps on the repo of upstreamed kernel or use the downstream versi
 4. Clean start: `make clean`.
 5. Copy the config file from this repo to the default config directory: `arch/arm64/configs/config-sailfishos-allwinner.aarch64`. 
 6. Build a full config using: `make defconfig KBUILD_DEFCONFIG=config-sailfishos-allwinner.aarch64`.
-6. Build the kernel Image, modules and device tree files: `make -j4 Image modules dtbs`.
+7. Build the kernel Image, modules and device tree files: `make -j4 Image modules dtbs`.
+8. Install the kernel modules to a given path which can be copied over to the `/lib/modules` directory on the device: `make modules_install INSTALL_MOD_PATH=../linux_modules/`
