@@ -7,7 +7,7 @@ Version:    5.6
 Release:    0
 Group:      System/Kernel
 License:    GPLv2
-URL:        https://github.com/neochapay/kernel-dont_be_evil
+URL:        https://github.com/sailfish-on-dontbeevil/droid-hal-kernel-pine
 Source0:    linux_modules.tar.bz2
 Source1:    sun50i-a64-pinephone-1.0.dtb
 Source2:    sun50i-a64-pinephone-1.0.dts
