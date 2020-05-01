@@ -38,20 +38,28 @@ ls .
 
 %install
 mkdir -p $RPM_BUILD_ROOT/boot
-cp %{SOURCE1} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE2} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE3} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE4} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE5} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE6} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE7} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE8} $RPM_BUILD_ROOT/boot/
-cp %{SOURCE9} $RPM_BUILD_ROOT/boot/
+cp %{SOURCE1} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.0.dtb
+cp %{SOURCE2} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.0.dts
+cp %{SOURCE3} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.1.dtb
+cp %{SOURCE4} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.1.dts
+cp %{SOURCE5} $RPM_BUILD_ROOT/boot/sun50i-a64-pinetab.dtb
+cp %{SOURCE6} $RPM_BUILD_ROOT/boot/sun50i-a64-pinetab.dts
+cp %{SOURCE7} $RPM_BUILD_ROOT/boot/sun50i-a64-dontbeevil.dtb
+cp %{SOURCE8} $RPM_BUILD_ROOT/boot/sun50i-a64-dontbeevil.dts
+cp %{SOURCE9} $RPM_BUILD_ROOT/boot/Image
 
 cp -R lib $RPM_BUILD_ROOT/
 
 %files
-/boot/
+/boot/sun50i-a64-pinephone-1.0.dtb
+/boot/sun50i-a64-pinephone-1.0.dts
+/boot/sun50i-a64-pinephone-1.1.dtb
+/boot/sun50i-a64-pinephone-1.1.dts
+/boot/sun50i-a64-pinetab.dtb
+/boot/sun50i-a64-pinetab.dts
+/boot/sun50i-a64-dontbeevil.dtb
+/boot/sun50i-a64-dontbeevil.dts
+/boot/Image
 
 %files modules
 /lib/modules
