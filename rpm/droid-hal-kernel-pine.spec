@@ -63,3 +63,8 @@ cp -R lib $RPM_BUILD_ROOT/
 
 %files modules
 /lib/modules
+
+%post
+### Add these users for dbus like droid-hal-device does
+/usr/sbin/useradd -r -d / -s /sbin/nologin nfc
+/usr/sbin/useradd -r -d / -s /sbin/nologin radio
