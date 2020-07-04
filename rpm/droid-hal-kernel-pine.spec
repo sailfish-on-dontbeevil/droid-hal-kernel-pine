@@ -17,7 +17,9 @@ Source5:    sun50i-a64-pinetab.dtb
 Source6:    sun50i-a64-pinetab.dts
 Source7:    sun50i-a64-dontbeevil.dtb
 Source8:    sun50i-a64-dontbeevil.dts
-Source9:    Image
+Source9:    sun50i-a64-pinephone-1.2.dtb
+Source10:   sun50i-a64-pinephone-1.2.dts
+Source11:   Image
 
 %description
 This package contains the mainline kernel package for
@@ -37,7 +39,7 @@ Group:   System/Kernel
 ls .
 
 %install
-mkdir -p $RPM_BUILD_ROOT/boot
+mkdir -p $RPM_BUILD_ROOT/boot/allwinner
 cp %{SOURCE1} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.0.dtb
 cp %{SOURCE2} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.0.dts
 cp %{SOURCE3} $RPM_BUILD_ROOT/boot/sun50i-a64-pinephone-1.1.dtb
@@ -46,7 +48,14 @@ cp %{SOURCE5} $RPM_BUILD_ROOT/boot/sun50i-a64-pinetab.dtb
 cp %{SOURCE6} $RPM_BUILD_ROOT/boot/sun50i-a64-pinetab.dts
 cp %{SOURCE7} $RPM_BUILD_ROOT/boot/sun50i-a64-dontbeevil.dtb
 cp %{SOURCE8} $RPM_BUILD_ROOT/boot/sun50i-a64-dontbeevil.dts
-cp %{SOURCE9} $RPM_BUILD_ROOT/boot/Image
+cp %{SOURCE11} $RPM_BUILD_ROOT/boot/Image
+
+# Copy DTBs from production batches in /boot/allwinner so that they
+# can be picked up by bootscripts looking at ${fdtfile} set by u-boot
+cp %{SOURCE3} $RPM_BUILD_ROOT/boot/allwinner/sun50i-a64-pinephone-1.1.dtb
+cp %{SOURCE4} $RPM_BUILD_ROOT/boot/allwinner/sun50i-a64-pinephone-1.1.dts
+cp %{SOURCE9} $RPM_BUILD_ROOT/boot/allwinner/sun50i-a64-pinephone-1.2.dtb
+cp %{SOURCE10} $RPM_BUILD_ROOT/boot/allwinner/sun50i-a64-pinephone-1.2.dts
 
 cp -R lib $RPM_BUILD_ROOT/
 
@@ -60,6 +69,10 @@ cp -R lib $RPM_BUILD_ROOT/
 /boot/sun50i-a64-dontbeevil.dtb
 /boot/sun50i-a64-dontbeevil.dts
 /boot/Image
+/boot/allwinner/sun50i-a64-pinephone-1.1.dtb
+/boot/allwinner/sun50i-a64-pinephone-1.1.dts
+/boot/allwinner/sun50i-a64-pinephone-1.2.dtb
+/boot/allwinner/sun50i-a64-pinephone-1.2.dts
 
 %files modules
 /lib/modules
